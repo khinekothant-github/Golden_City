@@ -99,6 +99,9 @@ return [
 
     'key' => env('APP_KEY'),
 
+    'super_admin_email' => env('SUPER_ADMIN_EMAIL', 'superadmin@goldencity.test'),
+    'super_admin_password' => env('SUPER_ADMIN_PASSWORD', 'SuperAdmin123!'),
+
     'previous_keys' => [
         ...array_filter(
             explode(',', (string) env('APP_PREVIOUS_KEYS', ''))
