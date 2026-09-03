@@ -10,6 +10,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\Unique;
 
 class UnitController extends Controller
 {
@@ -81,7 +82,7 @@ class UnitController extends Controller
         ];
     }
 
-    private function parentScopedUnique(Request $request, ?Unit $unit = null): Rule
+    private function parentScopedUnique(Request $request, ?Unit $unit = null): Unique
     {
         $parentKey = $request->filled('building_id') ? 'building_id' : 'phase_id';
         $parentValue = $request->input($parentKey);

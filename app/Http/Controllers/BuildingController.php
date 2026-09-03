@@ -9,6 +9,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\Unique;
 
 class BuildingController extends Controller
 {
@@ -59,7 +60,7 @@ class BuildingController extends Controller
         return response()->json(['message' => 'Building deleted.']);
     }
 
-    private function phaseScopedUnique(Request $request, ?Building $building = null): Rule
+    private function phaseScopedUnique(Request $request, ?Building $building = null): Unique
     {
         $rule = Rule::unique('buildings', 'name')
             ->where(fn ($query) => $query->where('phase_id', $request->input('phase_id')));
