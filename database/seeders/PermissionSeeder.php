@@ -44,6 +44,11 @@ class PermissionSeeder extends Seeder
         'create_events',
         'update_events',
         'delete_events',
+        'read_customers',
+        'create_customers',
+        'update_customers',
+        'delete_customers',
+        'record_customer_visits',
     ];
 
     /**

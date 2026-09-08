@@ -4,6 +4,8 @@ use App\Http\Controllers\AgencyController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BuildingController;
 use App\Http\Controllers\CommissionSchemeController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\CustomerVisitController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PhaseController;
@@ -78,4 +80,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::middleware('permission:read_events')->get('/events/{event}', [EventController::class, 'show']);
     Route::middleware('permission:update_events')->put('/events/{event}', [EventController::class, 'update']);
     Route::middleware('permission:delete_events')->delete('/events/{event}', [EventController::class, 'destroy']);
+
+    Route::middleware('permission:read_customers')->get('/customers', [CustomerController::class, 'index']);
+    Route::middleware('permission:create_customers')->post('/customers', [CustomerController::class, 'store']);
+    Route::middleware('permission:read_customers')->get('/customers/{customer}', [CustomerController::class, 'show']);
+    Route::middleware('permission:update_customers')->put('/customers/{customer}', [CustomerController::class, 'update']);
+    Route::middleware('permission:delete_customers')->delete('/customers/{customer}', [CustomerController::class, 'destroy']);
+
+    Route::middleware('permission:record_customer_visits')->post('/customers/{customer}/visits', [CustomerVisitController::class, 'store']);
 });
